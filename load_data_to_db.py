@@ -14,6 +14,7 @@ from bson import json_util
 
 import bson
 with open('sample_data.bson', 'rb') as f:
+    data = bson.decode(f.read())
     data = json_util.dumps(f.read())
     data1 = json_util.loads(data)
     db.persons.insert_many(data1)

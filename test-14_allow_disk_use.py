@@ -6,11 +6,6 @@ client = MongoClient('mongodb://{}:{}@{}:{}/?authSource=admin'.format(
     '27017',
 ))
 db = client['test_db']
-data = db['menus'].find({})
 
-
-###group data by name and sum the price 
-data1 = db.menus.aggregate([
-    {"$group": { "_id": "$name", "total": {"$sum": "$price"}}}
-])
-print(list(data1))
+#allow mongodb use Disk rather than ram incase of large datasets
+test1 = db.persons.aggregate([], {"allowDiskUse": True})
